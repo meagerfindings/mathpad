@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import InputBox from "./Components/inputBox.js";
+import mathParser from "./Helpers/mathParser";
 
 class App extends Component {
 
@@ -9,6 +10,7 @@ class App extends Component {
   };
 
   state = {
+    inputValue: this.props.inputValue,
     displayValue: this.props.inputValue,
   };
 
@@ -16,16 +18,35 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {this.state.displayValue}
-          <InputBox handleUpdate={this.setInputValue}/>
+          <form>
+            <InputBox handleUpdate={this.setInputValue}/>
+            <input
+              type="submit"
+              value="Calculate"
+              onClick={this.handleSubmit.bind(this)}
+            />
+            {this.state.displayValue}
+          </form>
         </header>
       </div>
     );
   }
 
   setInputValue = (newValue) => {
-    this.setState({displayValue: newValue});
+    this.setState({inputValue: newValue});
+  };
+
+  handleSubmit(event) {
+    this.calculateValue();
+    event.preventDefault();
   }
+
+  calculateValue = () => {
+    const displayValue = mathParser(this.state.inputValue);
+    this.setState({displayValue});
+  };
 }
+
+// TODO: extract what we have into a rowContainer
 
 export default App;

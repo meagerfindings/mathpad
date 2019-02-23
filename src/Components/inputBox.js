@@ -7,10 +7,6 @@ class InputBox extends React.Component {
         handleUpdate: _.noop,
     };
 
-    handleChange(event) {
-        this.props.handleUpdate(event.target.value);
-    }
-
     render() {
         return(
           <span>
@@ -21,6 +17,10 @@ class InputBox extends React.Component {
             />
           </span>
         )
+    }
+
+    handleChange(event) {
+        this.props.handleUpdate(event.target.value);
     }
 }
 
