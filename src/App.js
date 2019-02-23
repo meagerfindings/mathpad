@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import InputBox from "./Components/inputBox.js";
 
 class App extends Component {
+
+  static defaultProps = {
+    inputValue: 0,
+  };
+
+  state = {
+    displayValue: this.props.inputValue,
+  };
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          {this.state.displayValue}
+          <InputBox handleUpdate={this.setInputValue}/>
         </header>
       </div>
     );
+  }
+
+  setInputValue = (newValue) => {
+    this.setState({displayValue: newValue});
   }
 }
 
