@@ -5,7 +5,6 @@ class InputBox extends React.Component {
 
     static defaultProps = {
       handleUpdate: _.noop,
-      // value: "",
     };
 
     render() {
@@ -15,7 +14,6 @@ class InputBox extends React.Component {
               type="text"
               name="inputField"
               onChange={this.handleChange.bind(this)}
-              // value={this.props.value}
             />
           </span>
         )
@@ -23,7 +21,7 @@ class InputBox extends React.Component {
 
     handleChange(event) {
         this.props.handleUpdate(event.target.value);
-    }
+    };
 }
 
 export default InputBox;

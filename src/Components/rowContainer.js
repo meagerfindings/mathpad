@@ -4,9 +4,6 @@ import ResultDisplay from "./resultDisplay";
 import mathParser from "../Helpers/mathParser";
 
 class RowContainer extends React.Component {
-  static defaultProps = {
-    inputValue: 0,
-  };
 
   state = {
     inputValue: this.props.inputValue,
