@@ -12,18 +12,21 @@ class RowContainer extends React.Component {
     inputValue: this.props.inputValue,
     recalculate: false,
     currentValue: 0,
+    stringValue: "",
   };
 
   render () {
     return (
       <form>
-        <InputBox handleUpdate={this.setInputValue}/>
+        <InputBox handleUpdate={this.setInputValue} value={this.state.stringValue}/>
         <input
           type="submit"
           value="Calculate"
           onClick={this.handleSubmit.bind(this)}
         />
         <ResultDisplay value={this.state.currentValue} />
+        <br/>
+        <ResultDisplay value={this.state.stringValue} />
       </form>
     )
   }
@@ -35,6 +38,7 @@ class RowContainer extends React.Component {
   handleSubmit(event) {
     const calculatedValue = this.calculateValue(this.state.inputValue);
     this.updateCurrentValue(calculatedValue);
+    this.updateStringValue(this.state.inputValue, calculatedValue);
     event.preventDefault();
   };
 
@@ -44,6 +48,11 @@ class RowContainer extends React.Component {
 
   calculateValue = (inputValue) => {
     return mathParser(inputValue);
+  };
+
+  updateStringValue(inputValue, calculatedValue) {
+    const stringValue = inputValue + " = " + calculatedValue.toString();
+    this.setState( {stringValue});
   };
 }
 

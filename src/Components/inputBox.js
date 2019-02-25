@@ -4,7 +4,8 @@ import React from "react";
 class InputBox extends React.Component {
 
     static defaultProps = {
-        handleUpdate: _.noop,
+      handleUpdate: _.noop,
+      // value: "",
     };
 
     render() {
@@ -14,6 +15,7 @@ class InputBox extends React.Component {
               type="text"
               name="inputField"
               onChange={this.handleChange.bind(this)}
+              // value={this.props.value}
             />
           </span>
         )
